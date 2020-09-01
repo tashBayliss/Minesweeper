@@ -1,12 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-#define BOARD 5
+#define BOARD 9
+#define MINES 5
+
+int createMines(int board[BOARD][BOARD]) {
+    int random = rand() % (BOARD*BOARD);
+    printf("%d\n", random);
+
+    for (int i=1; i<MINES; i++) {
+        int random = rand() % (BOARD*BOARD);
+        printf("%d\n", random);
+        
+    }
+
+    return 0;
+}
 
 void RedrawBoard (int board[BOARD][BOARD]) {
     system("clear");
 
+    printf("  ");
+
+    for (int i = 1; i<=BOARD; i++) {
+        printf("%d ", i);
+    }
+
+    printf("\n");
+
     for (int x=0; x<BOARD; x++) {
+        printf("%d ", x+1);
         for (int y=0; y<BOARD; y++){
             printf("%d ", board[x][y]);
         }
@@ -18,9 +42,16 @@ void RedrawBoard (int board[BOARD][BOARD]) {
 void PrintBoard() {
     system("clear");
 
-    for (int i=0; i<BOARD; i++) {
-        for (int j=0; j<BOARD; j++){
-            //printf("%d ", board[i][j]);
+    printf("  ");
+    for (int i = 1; i<=BOARD; i++) {
+        printf("%d ", i);
+    }
+
+    printf("\n");
+
+    for (int x=0; x<BOARD; x++) {
+        printf("%d ", x+1);
+        for (int y=0; y<BOARD; y++){
             printf("* ");
         }
         printf("\n");
@@ -28,32 +59,32 @@ void PrintBoard() {
     printf("\n");
 }
 
+bool isMine(int row, int col, int board[BOARD][BOARD]) { 
+    if (board[row][col] == "X"){
+        return true;
+    }
+
+    else {
+        return false;
+    }
+}
 
 int main () {
-    int x, y;
+    int row, col;
     int temp;
 
     int board[BOARD][BOARD] = {};
     PrintBoard();
+    createMines(board[BOARD][BOARD]);
 
     while (1) {
-        printf("press 1 to view, 0 to hide: ");
-        scanf("%d", &temp);
+        printf("Enter a row: ");
+        scanf("%d", &row);
 
-        if (temp == 1) {
-            RedrawBoard(board);
-        }
+        printf("Enter a column: ");
+        scanf("%d", &col);
 
-        else if (temp == 0) {
-            PrintBoard();
-        }
-
-        else {
-            printf("invalid option\n");
-            printf("press 1 to view, 0 to hide: ");
-            scanf("%d", &temp);
-        }
-
+        RedrawBoard(board);
     }
 
     return 0;
