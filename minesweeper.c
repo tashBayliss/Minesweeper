@@ -6,14 +6,23 @@
 #define MINES 5
 
 int createMines(int board[BOARD][BOARD]) {
-    int random = rand() % (BOARD*BOARD);
-    printf("%d\n", random);
-
     for (int i=1; i<MINES; i++) {
-        int random = rand() % (BOARD*BOARD);
-        printf("%d\n", random);
+        int randRow = rand() % BOARD + 1;
+        int randCol = rand() % BOARD + 1;
+
+        printf("%d %d\n", randRow, randCol);
         
+        //while (board[randRow][randCol] = "X") {
+        //    randRow = rand() % (BOARD);
+        //    randCol = rand() % (BOARD);
+        //}
+
+        //printf("value %d\n", board[1][1]);
+
+
+        //int board[randRow][randCol] = "X";
     }
+    printf("value %d\n", board[1][1]);
 
     return 0;
 }
